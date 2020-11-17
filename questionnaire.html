@@ -1,0 +1,590 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+  <title>BoardGame</title>
+  <style>
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+    }
+
+    /* ส่วนของกรอบ */
+    .rcorners {
+      margin: 20px;
+      /* เว้นช่องว่างระหว่างช่องคำถาม */
+      border-radius: 50px;
+      background: #017c74ef;
+      /* ทำให้สีโปร่งใสใช้สี rgba เช่น background: rgba(204, 204, 204, 0.5); */
+      padding: 50px;
+      width: 700px;
+      height: 90px;
+    }
+
+    .r2corners {
+      margin: 20px;
+      /* เว้นช่องว่างระหว่างช่องคำถาม */
+      border-radius: 50px;
+      background: #017c74ef;
+      /* ทำให้สีโปร่งใสใช้สี rgba เช่น background: rgba(204, 204, 204, 0.5); */
+      padding: 50px;
+      width: 700px;
+      height: 120px;
+    }
+
+    .r3corners {
+      margin: 20px;
+      /* เว้นช่องว่างระหว่างช่องคำถาม */
+      border-radius: 50px;
+      background: #017c74ef;
+      /* ทำให้สีโปร่งใสใช้สี rgba เช่น background: rgba(204, 204, 204, 0.5); */
+      padding: 50px;
+      width: 700px;
+      height: 400px;
+    }
+
+    .bg {
+      /* ทำให้ภาพ background เต็มจอได้ขณะเปิด Django(ตอน Run Server) */
+      background-image: url("/static/img/1563328623_PbMAjX1.gif");
+      /* ต้องเรียกใช้ {% load static %} ต้องสร้างไฟล์ static กับ img เก็บรูปภาพ 
+        ส่วนของ settings.py ต้องเพิ่ม STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'static'),) */
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    div.scorl {
+      margin: auto;
+      height: 80%;
+      width: 60%;
+      overflow: auto;
+      /* เป็นส่วนทำให้มี scorllbar */
+    }
+
+    h1 {
+      /* ปรับตัวหนังสือ */
+      text-align: center;
+      color: #fff;
+      font-family: 'Kanit', sans-serif;
+    }
+
+    /*------ส่วนของปุ่มตัวเลือก (Radio Buttons)---------*/
+    /* The container */
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 20px;
+      font-family: 'Kanit', sans-serif;
+    }
+
+    /* Hide the browser's default radio button */
+    .container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    /* Create a custom radio button */
+    .checkmark {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      height: 15px;
+      width: 15px;
+      background-color: #eee;
+      border-radius: 50%;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input~.checkmark {
+      background-color: #ccc;
+    }
+
+    /* When the radio button is checked, add a blue background */
+    .container input:checked~.checkmark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #2196F3;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .container input:checked~.checkmark:after {
+      display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    .container .checkmark:after {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: white;
+    }
+
+    /*----------------------------------------------*/
+    /*--------ส่วนของปุ่ม Submit-----------------------*/
+    .button {
+      border: none;
+      color: #ffffff00;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      font-family: 'Kanit', sans-serif;
+    }
+
+    .button1 {
+      background-color: #bbe65875;
+      color: rgb(255, 255, 255);
+      border: 2px solid #3f833f;
+    }
+
+    .button1:hover {
+      background-color: #77ce7a;
+      color: rgb(0, 0, 0);
+    }
+
+    .button2 {
+      background-color: #e9767675;
+      color: rgb(255, 255, 255);
+      border: 2px solid #881212;
+    }
+
+    .button2:hover {
+      background-color: #bb4646;
+      color: rgb(0, 0, 0);
+    }
+
+    /*----------------------------------------------*/
+  </style>
+</head>
+
+
+<body>
+  <div class="bg">
+    <h1>วันนี้คุณจะไปเที่ยวที่ไหนดี?</h1>
+    <div class="scorl">
+      <form action="QStart" method="POST">
+        {% csrf_token %}
+        <!-- *******คำถาม1********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          1.คุณเป็นเพศอะไร?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            <label class="container" style="margin-left: 50px; margin-right: 50px;">ผู้ชาย
+              <input type="radio" name="gender" value="male">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 50px; margin-right: 50px;">ผู้หญิง
+              <input type="radio" name="gender" value="female">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 50px; margin-right: 50px;">LGBTQ
+              <input type="radio" name="gender" value="LGBTQ">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม2********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          2.คุณอายุเท่าไร?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            </label>
+            <label class="container" style="margin-left: 5px; margin-right: 10px;">11-20ปี
+              <input type="radio" name="age" value="young">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 5px; margin-right: 10px;">21-40ปี
+              <input type="radio" name="age" value="half">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 5px; margin-right: 10px;">41-60ปี
+              <input type="radio" name="age" value="old">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม3********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          3.ตอนนี้คุณอาศัยอยู่ที่ภาคใดในประเทศไทย?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            <label class="container" style="margin-left: 50px; margin-right: 50px;">ภาคกลาง
+              <input type="radio" name="direction" value="central">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 50px; margin-right: 50px;">อื่นๆ
+              <input type="radio" name="direction" value="other">
+              <span class="checkmark"></span>
+            </label>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม4********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          4.คุณมักวางแผนในการท่องเที่ยวมากน้อยเพียงใด?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">น้อยที่สุด
+              <input type="radio" name="imagine" value="1">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">น้อย
+              <input type="radio" name="imagine" value="2">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">ปานกลาง
+              <input type="radio" name="imagine" value="3">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">มาก
+              <input type="radio" name="imagine" value="4">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">มากที่สุด
+              <input type="radio" name="imagine" value="5">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม5********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          5.คุณชอบท่องเที่ยวกับใครมากที่สุด ?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">คนเดียว
+              <input type="radio" name="match" value="alone">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">เพื่อน
+              <input type="radio" name="match" value="friends">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">อื่นๆ
+              <input type="radio" name="match" value="other">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม6********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          6.คุณชอบเดินทางไปสถานที่ท่องเที่ยวที่คุณชอบที่สุดด้วยวิธีใด?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">รถยนต์ส่วนตัว
+              <input type="radio" name="pretend" value="private">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">รถไฟ
+              <input type="radio" name="pretend" value="train">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">อื่นๆ
+              <input type="radio" name="pretend" value="other">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม7********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          7.สถานที่ท่องเที่ยวที่คุณชอบที่สุด ใช้เวลาในการท่องเที่ยวกี่วัน?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            <label class="container" style="margin-left: 10px; margin-right: 30px;">1-2 วัน
+              <input type="radio" name="indulgent" value="1">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 30px;">3-5 วัน
+              <input type="radio" name="indulgent" value="2">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 30px;">5-7 วัน
+              <input type="radio" name="indulgent" value="3">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม8********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          8.สถานที่ท่องเที่ยวที่คุณชอบที่สุด ใช้ค่าใช้จ่ายประมาณเท่าไร?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">ต่ำกว่า 1,000
+              <input type="radio" name="trust" value="1k">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">1,001 – 3,000
+              <input type="radio" name="trust" value="3k">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">3,001 – 5,000
+              <input type="radio" name="trust" value="5k">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">มากกว่า 5,000
+              <input type="radio" name="trust" value="5k+">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม9********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          9.คุณชอบไปสถานที่ท่องเที่ยวที่คุณชอบที่สุดในช่วงเวลาใด?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            <label class="container" style="margin-left: 50px; margin-right: 50px;">วันหยุดสุดสัปดาห์
+              <input type="radio" name="help" value="weekend">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 50px; margin-right: 50px;">วันหยุดเทศกาล
+              <input type="radio" name="help" value="holiday">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 50px; margin-right: 50px;">ช่วงปิดเทอม
+              <input type="radio" name="help" value="termend">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 50px; margin-right: 50px;">ทุกเวลาที่ต้องการไป
+              <input type="radio" name="help" value="everytime">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม10********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          10.คุณชอบท่องเที่ยวที่ที่มีคนพลุกพล่านมากเพียงใด?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">น้อยที่สุด
+              <input type="radio" name="imagine" value="1">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">น้อย
+              <input type="radio" name="imagine" value="2">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">ปานกลาง
+              <input type="radio" name="imagine" value="3">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">มาก
+              <input type="radio" name="imagine" value="4">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">มากที่สุด
+              <input type="radio" name="imagine" value="5">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม11********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          11.ระดับความเครียดในการทำงาน?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">น้อยที่สุด
+              <input type="radio" name="plan" value="1">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">น้อย
+              <input type="radio" name="plan" value="2">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">ปานกลาง
+              <input type="radio" name="plan" value="3">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">มาก
+              <input type="radio" name="plan" value="4">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">มากที่สุด
+              <input type="radio" name="plan" value="5">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม12********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          12.คุณชอบถ่ายรูปมากแค่ไหน?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">น้อยที่สุด
+              <input type="radio" name="talk" value="1">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">น้อย
+              <input type="radio" name="talk" value="2">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">ปานกลาง
+              <input type="radio" name="talk" value="3">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">มาก
+              <input type="radio" name="talk" value="4">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 10px;">มากที่สุด
+              <input type="radio" name="talk" value="5">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม13********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          13.คุณชอบท่องเที่ยวภายในภูมิภาคที่ตนเองอาศัยอยู่หรือนอกภูมิภาคของตนเอง?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+
+            <label class="container" style="margin-left: 10px; margin-right: 30px;">ภายในภูมิภาค
+              <input type="radio" name="food" value="in">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" style="margin-left: 10px; margin-right: 30px;">นอกภูมิภาค
+              <input type="radio" name="food" value="out">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <!-- *******คำถาม14********** -->
+        <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+          14.คุณมักให้ความช่วยเหลือกับผู้อื่นมากน้อยเพียงใด?
+          <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+          <label class="container" style="margin-left: 10px; margin-right: 10px;">น้อย
+            <input type="radio" name="talk" value="2">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container" style="margin-left: 10px; margin-right: 10px;">ปานกลาง
+            <input type="radio" name="talk" value="3">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container" style="margin-left: 10px; margin-right: 10px;">มาก
+            <input type="radio" name="talk" value="4">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container" style="margin-left: 10px; margin-right: 10px;">มากที่สุด
+            <input type="radio" name="talk" value="5">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+    </div>
+    <!-- *******คำถาม15********** -->
+    <div class="r2corners"
+      style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+      15.เมื่อคุณไปเที่ยวค้างคืนคุณจะเลือกพักอาศัยที่ใด?
+      <div class="choice" style="display: flex; margin-left: 100px; margin-top: 20px">
+        <label class="container" style="margin-left: 10px; margin-right: 10px;">โรงแรม
+          <input type="radio" name="time" value="hotel">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container" style="margin-left: 10px; margin-right: 10px;">รีสอร์ท
+          <input type="radio" name="time" value="resort">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container" style="margin-left: 10px; margin-right: 10px;">โฮมสเตย์
+          <input type="radio" name="time" value="homestay">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="choice" style="display: flex; margin-left: 100px; margin-top: 20px">
+        <label class="container" style="margin-left: 10px; margin-right: 4px;">ห้องพักรายวัน
+          <input type="radio" name="time" value="dailyroom">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container" style="margin-left: 2px; margin-right: 4px;">เต็นท์
+          <input type="radio" name="time" value="tent">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <!-- *******คำถาม16********** -->
+    <div class="rcorners"
+      style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+      16.คุณชอบเที่ยวภาคใดมากที่สุด?
+      <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+        <label class="container" style="margin-left: 50px; margin-right: 50px;">ภาคเหนือ
+          <input type="radio" name="method" value="n">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container" style="margin-left: 50px; margin-right: 50px;">ภาคตะวันออกเฉียงเหนือ
+          <input type="radio" name="method" value="ne">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container" style="margin-left: 50px; margin-right: 50px;">ภาคกลาง
+          <input type="radio" name="method" value="c">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container" style="margin-left: 50px; margin-right: 50px;">ภาคตะวันออก
+          <input type="radio" name="method" value="e">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container" style="margin-left: 50px; margin-right: 50px;">ภาคตะวันตก
+          <input type="radio" name="method" value="w">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container" style="margin-left: 50px; margin-right: 50px;">ภาคใต้
+          <input type="radio" name="method" value="s">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <!-- *******คำถาม17********** -->
+    <div class="rcorners"
+      style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+      17.การไปเที่ยวทำให้คุณได้รับสิ่งใดมากที่สุด?
+      <div class="choice" style="display: flex; justify-content: center; margin-top: 20px">
+        <label class="container" style="margin-left: 10px; margin-right: 10px;">ได้พักผ่อน
+          <input type="radio" name="complexity" value="stay">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container" style="margin-left: 10px; margin-right: 10px;">ได้รับแรงบัลดาลใจ
+          <input type="radio" name="complexity" value="inspire">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container" style="margin-left: 10px; margin-right: 10px;">ได้เปิดโลกทัศน์เปิดประสบการณ์ใหม่ๆ
+          <input type="radio" name="complexity" value="newexp">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container" style="margin-left: 10px; margin-right: 10px;">เพิ่มความสัมพันธ์กับคนที่คุณรัก
+          <input type="radio" name="complexity" value="relation">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <!-- ******************** -->
+    <button class="button button1" input type="submit" value="Next"
+      style="float: right; margin-right: 80px;">เสร็จสิ้น</button>
+    </form>
+    <form action="Home" method="POST">
+      {% csrf_token %}
+      <button class="button button2" input type="submit" value="Back"
+        style="float: left; margin-left: 20px;">ยกเลิก</button>
+    </form>
+  </div>
+</body>
+
+</html>
