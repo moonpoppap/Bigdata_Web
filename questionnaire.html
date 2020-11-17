@@ -50,7 +50,6 @@
     .bg {
       /* ทำให้ภาพ background เต็มจอได้ขณะเปิด Django(ตอน Run Server) */
       background-image: linear-gradient(to right, rgba(7, 46, 26, 0.52), rgba(7, 46, 26, 0.52)), url(img/วิว.jpg);
-
       /* ต้องเรียกใช้ {% load static %} ต้องสร้างไฟล์ static กับ img เก็บรูปภาพ 
         ส่วนของ settings.py ต้องเพิ่ม STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'static'),) */
       height: 100%;
@@ -86,6 +85,7 @@
       cursor: pointer;
       font-size: 20px;
       font-family: 'Kanit', sans-serif;
+      /*text-align: center;*/
     }
 
     /* Hide the browser's default radio button */
@@ -582,8 +582,8 @@
     </form>
     <form action="Home" method="POST">
       {% csrf_token %}
-      <button class="button button2" input type="submit" value="Back"
-        style="float: left; margin-left: 20px;">ยกเลิก</button>
+      <a href="index.html"><button class="button button2" input type="submit" value="Back"
+        style="float: left; margin-left: 20px;">ยกเลิก </button></a>
     </form>
   </div>
 </body>
