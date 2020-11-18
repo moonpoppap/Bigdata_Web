@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ศูนย์การเรียนรู้เศรษฐกิจพอเพียง-540</title>
+  <title>ศูนย์การเรียนรู้เศรษฐกิจพอเพียง</title>
   <style>
     body {
       background-color: white;
@@ -38,5 +38,31 @@
   <div class="input-group">
     <button type="submit" name="comment" class="btn">Comment</button>
   </div>
+
+   <!-- Show Comment  -->
+
+      <form action="QStart" method="POST">
+      <div class="rcorners"
+          style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+
+          <div class="scorl">
+
+          <p id="demo"></p>
+
+        <script>
+            var cars = ["BMW", "Volvo", "Saab", "Ford", "Fiat", "Audi"];
+            var text = "";
+            var n = cars.length ;
+
+            for (var i = cars.length-1 ; i >= 0 ; i--) {
+            text += "ความคิดเห็นที่  " + n + "  <br>" + cars[i] + "<br><br>"
+             n--;
+            }
+            document.getElementById("demo").innerHTML = text;
+        </script>
+           </div>
+
+        </div>
+      </form>
 </body>
 </html>
