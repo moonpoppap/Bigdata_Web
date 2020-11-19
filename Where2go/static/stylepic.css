@@ -1,0 +1,105 @@
+.input-group {
+    margin: 15px 0px 15px 0px;
+}
+
+.input-group label {
+    display: block;
+    text-align: left;
+    margin: 55px;
+}
+
+.input-group input {
+    height: 30px;
+    width: 93%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.btn {
+    padding: 25px;
+    font-size: 14px;
+    color: white;
+    background: #969292;
+    border: none;
+    border-radius: 5px;
+}
+
+.error {
+    width: 92%;
+    margin: 0px auto;
+    padding: 10px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.success {
+    color: #3c763d;
+    background: #dff9d8;
+    border: 1px solid #3c763d;
+    margin-bottom: 20px;
+}
+
+.topright {
+    position: absolute;
+    top: 40%;
+    right: 48.25%;
+    /* justify-content: center; */
+}
+
+.home {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+body {
+    background-color: white;
+    text-align: center;
+    color: black;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ส่วนของกรอบ */
+
+.rcorners {
+    margin: 3%;
+    justisy-content: center;
+    /* เว้นช่องว่างระหว่างช่องคำถาม */
+    border-radius: 50px;
+    background: #017c74ef;
+    /* ทำให้สีโปร่งใสใช้สี rgba เช่น background: rgba(204, 204, 204, 0.5); */
+    padding: 50px;
+    width: 90%;
+    height: 200px;
+}
+
+.bg {
+    /* ทำให้ภาพ background เต็มจอได้ขณะเปิด Django(ตอน Run Server) */
+    background-image: linear-gradient(to right, rgba(7, 46, 26, 0.52), rgba(7, 46, 26, 0.52)), url(img/วิว.jpg);
+    /* ต้องเรียกใช้ {% load static %} ต้องสร้างไฟล์ static กับ img เก็บรูปภาพ 
+      ส่วนของ settings.py ต้องเพิ่ม STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'static'),) */
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div.scorl {
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    /* เป็นส่วนทำให้มี scorllbar */
+}
