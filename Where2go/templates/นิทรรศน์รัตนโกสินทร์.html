@@ -37,8 +37,8 @@ body {
 <link rel="stylesheet" href="../static/stylepic.css">
 </head>
 
-<body>
-  <a href="https://th.wikipedia.org/wiki/%E0%B8%99%E0%B8%B4%E0%B8%97%E0%B8%A3%E0%B8%A3%E0%B8%A8%E0%B8%99%E0%B9%8C%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B9%82%E0%B8%81%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C" target="_blank" rel="noopener noreferrer"><img src="../static/img/ประวัติศาสตร์/13.นิทรรศน์รัตนโกสินทร์-540.jpg" alt="Avatar" width="1920" height="400"></a>
+<body style="background-color:powderblue;">
+ <a href="https://th.wikipedia.org/wiki/%E0%B8%99%E0%B8%B4%E0%B8%97%E0%B8%A3%E0%B8%A3%E0%B8%A8%E0%B8%99%E0%B9%8C%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B9%82%E0%B8%81%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C" target="_blank" rel="noopener noreferrer"><img src="../static/img/ประวัติศาสตร์/13.นิทรรศน์รัตนโกสินทร์-540.jpg" alt="Avatar" width="1920" height="400"></a>
   <div class="topright">
   <!--การใช้ if else ด้วย Django-->
     {% if ans == 'positive' %}
@@ -59,10 +59,8 @@ body {
 
   <form action="Comment" method="POST">
     {% csrf_token %}
-  <div class="input-group">
-    <label for="comment"></label>
-    <input type="text" name="comm" placeholder="แสดงความคิดเห็น">
-  </div>
+ <label for="comment"></label>
+    <input type="text" name="comm" id="box" placeholder="แสดงความคิดเห็น"> 
   
     <button type="submit" name="comment" value="Rattanakosin" class="btn">Comment</button>
   </div>

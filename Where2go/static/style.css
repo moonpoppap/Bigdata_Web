@@ -13,7 +13,7 @@ body{
     color: aliceblue;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
+    background-position: center;
 }
 
 .center{
@@ -60,7 +60,6 @@ body{
     line-height: 4rem;
     font-weight: 800;
 }
-
 .btn-white{
     border: 2px solid #faeaea;
     border-radius: 2rem;
@@ -69,7 +68,6 @@ body{
     padding-left: 2rem;
     padding-right: 2rem;
 }
-
 #hero{
     background-image: linear-gradient(to right, rgba(185, 227, 238, 0.62), rgba(218, 248, 233, 0.52)), url(img/วิว.jpg);
     background-size: cover;
@@ -78,7 +76,6 @@ body{
     padding-bottom: 6rem;
     position: relative;
 }
-
 .btn-alpha{
     background: rgba(0, 0, 0, 0.5);
 } */

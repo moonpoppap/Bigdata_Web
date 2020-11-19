@@ -36,8 +36,8 @@ body {
 <link rel="stylesheet" href="../static/stylepic.css">
 </head>
 
-<body>
-  <a href="https://th.wikipedia.org/wiki/%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C:%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%95%E0%B8%81%E0%B8%AB%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%82%E0%B8%A1%E0%B8%B4%E0%B9%89%E0%B8%99_001.jpg" target="_blank"><img src="../static/img/ท่องเที่ยวธรรมชาติ/2.2น้ำตกห้วยแม่ขมิ้น-Sample(540).jpg" alt="Avatar" width="1920" height="400"></a>
+<body style="background-color:powderblue;">
+ <a href="https://th.wikipedia.org/wiki/%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C:%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%95%E0%B8%81%E0%B8%AB%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%82%E0%B8%A1%E0%B8%B4%E0%B9%89%E0%B8%99_001.jpg" target="_blank"><img src="../static/img/ท่องเที่ยวธรรมชาติ/2.2น้ำตกห้วยแม่ขมิ้น-Sample(540).jpg" alt="Avatar" width="1920" height="400"></a>
   <div class="topright">
   <!--การใช้ if else ด้วย Django-->
     {% if ans == 'positive' %}
@@ -58,10 +58,8 @@ body {
 
   <form action="Comment" method="POST">
     {% csrf_token %}
-  <div class="input-group">
-    <label for="comment"></label>
-    <input type="text" name="comm" placeholder="แสดงความคิดเห็น">
-  </div>
+ <label for="comment"></label>
+    <input type="text" name="comm" id="box" placeholder="แสดงความคิดเห็น"> 
   
     <button type="submit" name="comment" value="Waterfall" class="btn">Comment</button>
   </div>

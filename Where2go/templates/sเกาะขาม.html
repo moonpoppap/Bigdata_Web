@@ -38,8 +38,8 @@
  <link rel="stylesheet" href="../static/stylepic.css">
 </head>
 
-<body>
-  <a href="https://sites.google.com/site/thiphwrrncanthwngs/home/prawati-keaa-kham" target="_blank" rel="noopener noreferrer"><img src="../static/img/ทะเล/9.เกาะขาม-Simple(540).jpg" alt="Avatar" width="1920" height="400"></a>
+<body style="background-color:powderblue;">
+ <a href="https://sites.google.com/site/thiphwrrncanthwngs/home/prawati-keaa-kham" target="_blank" rel="noopener noreferrer"><img src="../static/img/ทะเล/9.เกาะขาม-Simple(540).jpg" alt="Avatar" width="1920" height="400"></a>
   <div class="topright">
   <!--การใช้ if else ด้วย Django-->
     {% if ans == 'positive' %}
@@ -60,10 +60,8 @@
 
   <form action="Comment" method="POST">
     {% csrf_token %}
-  <div class="input-group">
-    <label for="comment"></label>
-    <input type="text" name="comm" placeholder="แสดงความคิดเห็น">
-  </div>
+ <label for="comment"></label>
+    <input type="text" name="comm" id="box" placeholder="แสดงความคิดเห็น"> 
   
     <button type="submit" name="comment" value="Island" class="btn">Comment</button>
   </div>
