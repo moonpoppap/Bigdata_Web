@@ -37,6 +37,7 @@ body {
 </head>
 
 <body>
+<div class = "bg">
   <a href="https://sites.google.com/site/thiphwrrncanthwngs/home/prawati-keaa-kham" target="_blank" rel="noopener noreferrer"><img src="../static/img/ทะเล/12.หาดเฉวง-Simple(540).jpg" alt="Avatar" width="1920" height="400"></a>
   <div class="topright">
   <!--การใช้ if else ด้วย Django-->
@@ -58,10 +59,8 @@ body {
 
   <form action="Comment" method="POST">
     {% csrf_token %}
-  <div class="input-group">
-    <label for="comment"></label>
-    <input type="text" name="comm">
-  </div>
+  <label for="comment"></label>
+    <input type="text" name="comm" id="box" placeholder="แสดงความคิดเห็น">
   
     <button type="submit" name="comment" value="Chaweng" class="btn">Comment</button>
   </div>
