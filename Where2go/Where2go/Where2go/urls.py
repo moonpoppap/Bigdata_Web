@@ -41,5 +41,6 @@ urlpatterns = [
     path('LivePark',views.LivePark),
     path('DreamWorld',views.DreamWorld),
     path('SafariWorld',views.SafariWorld),
+    path('Comment',views.CommentPredict),
     path('Home',views.Home)
 ]
