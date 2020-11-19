@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>อุทยานแห่งชาติภูเรือ</title>
+<style>
+body {
+  background-color: white;
+  text-align: center;
+  color: black;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.rcorners {
+      margin: 3%;
+      justisy-content: center;
+      /* เว้นช่องว่างระหว่างช่องคำถาม */
+      border-radius: 50px;
+      background: #017c74ef;
+      /* ทำให้สีโปร่งใสใช้สี rgba เช่น background: rgba(204, 204, 204, 0.5); */
+      padding: 50px;
+      width: 90%;
+      height: 200px;
+   }
+    div.scorl {
+      margin: auto;
+      height: 100%;
+      width: 100%;
+      overflow: auto;
+      /* เป็นส่วนทำให้มี scorllbar */
+    }
+</style>
+<link rel="stylesheet" href="../static/stylepic.css">
+</head>
+
+<body>
+  <img src="../static/img/ท่องเที่ยวธรรมชาติ/3.2อุทยานแห่งชาติภูเรือ(540).jpg" alt="Avatar" width="1920" height="400">
+  <div class="topright">
+  <!--การใช้ if else ด้วย Django-->
+    {% if ans == 'positive' %}
+      <img src="../static/img/Positive.png" alt="Cinque Terre" width="75" height="75">
+    {% elif ans == 'negative' %}
+      <img src="../static/img/Negative.png" alt="Cinque Terre" width="75" height="75">
+    {% else %}
+    <img src="../static/img/Normal.png" alt="Cinque Terre" width="75" height="75">
+    {% endif %}
+  </div>
+
+  <div class="home">
+    <form action="Home" method="POST">
+      {% csrf_token %}
+      <input type="image" alt="Search" src="/static/img/homebtn.png" alt="Cinque Terre" width="50" height="50">
+    </form>
+  </div>
+
+  <div class="input-group">
+    <label for="comment"></label>
+    <input type="text" name="comm">
+  </div>
+  <div class="input-group">
+    <button type="submit" name="comment" class="btn">Comment</button>
+  </div>
+
+   <!-- Show Comment  -->
+
+   <div class="rcorners"
+   style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
+
+   <div class="scorl">
+     <!--ของ django ใช้ for loop แบบนี้-->
+      {%for subitem in comment%}
+         <p>ความคิดเห็น:</p>
+         <li>{{subitem}}</li><br>
+       {% endfor %}
+    </div>
+ </div>
+</body>
+</html>
