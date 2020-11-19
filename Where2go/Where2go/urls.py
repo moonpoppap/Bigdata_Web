@@ -41,9 +41,6 @@ urlpatterns = [
     path('LivePark',views.LivePark),
     path('DreamWorld',views.DreamWorld),
     path('SafariWorld',views.SafariWorld),
-<<<<<<< HEAD
-=======
     path('Comment',views.CommentPredict),
->>>>>>> origin/eig
     path('Home',views.Home)
 ]
