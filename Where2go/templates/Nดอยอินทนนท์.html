@@ -54,18 +54,19 @@
   <div class="home">
     <form action="Home" method="POST">
       {% csrf_token %}
-      <input type="image" alt="Search" src="/static/img/homebtn.png" alt="Cinque Terre" width="50" height="50">
+      <input type="image" alt="Search" src="/static/img/homebtn.png" alt="Cinque Terre" width="50" height="50" >
     </form>
   </div>
 
-  <form action="Comment" method="POST">
+  <form action="Comment" method="POST" id="main">
     {% csrf_token %}
-  <div class="input-group">
+  <!-- <div class="input-group"> -->
     <label for="comment"></label>
-    <input type="text" name="comm">
-  </div>
+
+    <input type="text" name="comm" id="box" placeholder="แสดงความคิดเห็น">
+  <!-- </div> -->
   
-    <button type="submit" name="comment" value="Mountain" class="btn">Comment</button>
+    <button type="submit" name="comment" value="Mountain" class="btn" >Comment</button>
   </div>
   </form>
 
