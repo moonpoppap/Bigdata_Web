@@ -178,6 +178,48 @@
     }
 
     /*----------------------------------------------*/
+
+      /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
   </style>
 </head>
 
@@ -186,8 +228,10 @@
   <div class="bg">
     <h1>วันนี้คุณจะไปเที่ยวที่ไหนดี?</h1>
     <div class="scorl">
-      <form action="QStart" method="POST">
+
+     <form action="QStart" method="POST">
         {% csrf_token %}
+     
         <!-- *******คำถาม1********** -->
         <div class="rcorners"
           style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
@@ -576,16 +620,62 @@
         </label>
       </div>
     </div>
+
+
+
+
+
+
+
     <!-- ******************** -->
-    <button class="button button1" input type="submit" value="Next"
+    <button class="button button1" id = "myBtn"
       style="float: right; margin-right: 80px;">เสร็จสิ้น</button>
+      <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+  </div>
+  <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
     </form>
+    
     <form action="Home" method="POST">
       {% csrf_token %}
       <button class="button button2" input type="submit" value="Back"
         style="float: left; margin-left: 20px;">ยกเลิก </button>
     </form>
   </div>
+
 </body>
 
 </html>
