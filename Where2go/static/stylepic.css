@@ -1,19 +1,4 @@
-input, label{
-    display: inline-block;
-    vertical-align: middle;
-    margin: 10px 0;
-}
-#box{
-    width: 1500px;
-    height: 50px;
-    margin-top: 10px;
-    margin-right: 30px;
-    border-radius: 5px;
-    border: 1px solid rgb(0, 0, 0);
-    padding: 0 10px;
-}
-
-/* .input-group {
+.input-group {
     margin: 15px 0px 15px 0px;
 }
 
@@ -25,23 +10,15 @@ input, label{
 
 .input-group input {
     height: 30px;
-    width: 80%;
+    width: 93%;
     padding: 5px 10px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid gray;
-} */
-
-
+}
 
 .btn {
-    margin-top: 60px;
-    /* flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    align-self: center; */
-    padding: 18px;
+    padding: 25px;
     font-size: 14px;
     color: white;
     background: #969292;
@@ -125,10 +102,4 @@ div.scorl {
     width: 100%;
     overflow: auto;
     /* เป็นส่วนทำให้มี scorllbar */
-}
-
-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
