@@ -39,6 +39,7 @@ body {
 
 <body>
   <a href="http://www.painaidii.com/business/138890/life-park-khao-yai-/lang/th/?mode=desktop" target="_blank" rel="noopener noreferrer"><img src="../static/img/นันนาการ/6.สวนสนุกไลฟ์ปาร์ค-Sample(540).jpg" alt="Avatar" width="1920" height="400"></a>
+  <img src="../static/img/นันนาการ/6.สวนสนุกไลฟ์ปาร์ค-Sample(540).jpg" alt="Avatar" width="1920" height="400">
   <div class="topright">
   <!--การใช้ if else ด้วย Django-->
     {% if ans == 'positive' %}
@@ -57,6 +58,8 @@ body {
     </form>
   </div>
 
+  <form action="Comment" method="POST">
+    {% csrf_token %}
   <div class="input-group">
     <label for="comment"></label>
     <input type="text" name="comm">
@@ -64,6 +67,9 @@ body {
   <div class="input-group">
     <button type="submit" name="comment" class="btn">Comment</button>
   </div>
+    <button type="submit" name="comment" value="LivePark" class="btn">Comment</button>
+  </div>
+  </form>
 
    <!-- Show Comment  -->
 
@@ -78,5 +84,6 @@ body {
        {% endfor %}
     </div>
  </div>
+ <h3>{{feel}}</h3>
 </body>
 </html>

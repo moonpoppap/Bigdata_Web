@@ -232,6 +232,8 @@
      <form action="QStart" method="POST">
         {% csrf_token %}
      
+      <form action="QStart" method="POST">
+        {% csrf_token %}
         <!-- *******คำถาม1********** -->
         <div class="rcorners"
           style="text-align:left;font-size: 155%;color: rgb(255, 255, 255); font-family: 'Kanit', sans-serif;">
@@ -669,6 +671,10 @@ window.onclick = function(event) {
 </script>
     </form>
     
+    <!-- ******************** -->
+    <button class="button button1" input type="submit" value="Next"
+      style="float: right; margin-right: 80px;">เสร็จสิ้น</button>
+    </form>
     <form action="Home" method="POST">
       {% csrf_token %}
       <button class="button button2" input type="submit" value="Back"
