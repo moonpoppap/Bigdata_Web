@@ -42,11 +42,6 @@ urlpatterns = [
     path('DreamWorld',views.DreamWorld),
     path('SafariWorld',views.SafariWorld),
     path('Comment',views.CommentPredict),
-    path('Home',views.Home),
-    path('ans01',views.ans01),
-    path('ans02',views.ans02),
-    path('ans03',views.ans03),
-    path('ans04',views.ans04),
-    path('ans05',views.ans05)
-
+    path('TripPredict',views.TripPredict),
+    path('Home',views.Home)
 ]

@@ -38,8 +38,14 @@
   <link rel="stylesheet" href="../static/stylepic.css">
 </head>
 
+<<<<<<< HEAD
 <body style="background-color:powderblue;">
  <a href="https://2baht.com/suwan-farm-pakchong/" target="_blank" rel="noopener noreferrer"><img src="../static/img/เกษตร/18.ข้าวโพดไร่สุวรรณ-540.jpg" alt="Avatar" width="1920" height="400"></a>
+=======
+<body>
+<div class = "bg">
+  <a href="https://2baht.com/suwan-farm-pakchong/" target="_blank" rel="noopener noreferrer"><img src="../static/img/เกษตร/18.ข้าวโพดไร่สุวรรณ-540.jpg" alt="Avatar" width="1920" height="400"></a>
+>>>>>>> 20c00eeb60f6c45ad006d3a75bffd1fcecaff7c4
   <div class="topright">
     <!--การใช้ if else ด้วย Django-->
     {% if ans == 'positive' %}
@@ -60,8 +66,13 @@
 
   <form action="Comment" method="POST">
     {% csrf_token %}
+<<<<<<< HEAD
  <label for="comment"></label>
     <input type="text" name="comm" id="box" placeholder="แสดงความคิดเห็น"> 
+=======
+  <label for="comment"></label>
+    <input type="text" name="comm" id="box" placeholder="แสดงความคิดเห็น">
+>>>>>>> 20c00eeb60f6c45ad006d3a75bffd1fcecaff7c4
   
     <button type="submit" name="comment" value="Corn" class="btn">Comment</button>
   </div>

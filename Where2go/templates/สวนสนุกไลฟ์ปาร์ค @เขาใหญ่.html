@@ -37,8 +37,14 @@ body {
 <link rel="stylesheet" href="../static/stylepic.css">
 </head>
 
+<<<<<<< HEAD
 <body style="background-color:powderblue;">
  <a href="http://www.painaidii.com/business/138890/life-park-khao-yai-/lang/th/?mode=desktop" target="_blank" rel="noopener noreferrer"><img src="../static/img/นันนาการ/6.สวนสนุกไลฟ์ปาร์ค-Sample(540).jpg" alt="Avatar" width="1920" height="400"></a>
+=======
+<body>
+<div class = "bg">
+  <a href="http://www.painaidii.com/business/138890/life-park-khao-yai-/lang/th/?mode=desktop" target="_blank" rel="noopener noreferrer"><img src="../static/img/นันนาการ/6.สวนสนุกไลฟ์ปาร์ค-Sample(540).jpg" alt="Avatar" width="1920" height="400"></a>
+>>>>>>> 20c00eeb60f6c45ad006d3a75bffd1fcecaff7c4
   <div class="topright">
   <!--การใช้ if else ด้วย Django-->
     {% if ans == 'positive' %}
@@ -59,8 +65,13 @@ body {
 
   <form action="Comment" method="POST">
     {% csrf_token %}
+<<<<<<< HEAD
  <label for="comment"></label>
     <input type="text" name="comm" id="box" placeholder="แสดงความคิดเห็น"> 
+=======
+  <label for="comment"></label>
+    <input type="text" name="comm" id="box" placeholder="แสดงความคิดเห็น">
+>>>>>>> 20c00eeb60f6c45ad006d3a75bffd1fcecaff7c4
   
     <button type="submit" name="comment" value="LivePark" class="btn">Comment</button>
   </div>

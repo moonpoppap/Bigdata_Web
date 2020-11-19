@@ -2,64 +2,163 @@
     --var1:#rgba(0,0,0,0);
 } */
 
-*{
+* {
     margin: 0;
-    padding: 0;   
+    padding: 0;
 }
 
-body{
+body {
     background-image: linear-gradient(to right, rgba(7, 46, 26, 0.52), rgba(7, 46, 26, 0.52)), url(img/วิว.jpg);
     /* opacity: 0.8; */
     color: aliceblue;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+<<<<<<< HEAD
     background-position: center;
+=======
+>>>>>>> 20c00eeb60f6c45ad006d3a75bffd1fcecaff7c4
 }
 
-.center{
+.center {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#carouselExampleCaptions1{
+#carouselExampleCaptions1 {
     /* text-align: center; */
 }
 
-.overlay-image{
+.overlay-image {
     /* opacity: 0.8; */
 }
 
-.carousel-item{
+.carousel-item {
     /* height: 18rem;
     width: 80rem; */
     background: rgb(78, 131, 131);
 }
 
-#carouselExampleCaptions1, #carouselExampleCaptions2, #carouselExampleCaptions3, #carouselExampleCaptions4, #carouselExampleCaptions5{
+#carouselExampleCaptions1,
+#carouselExampleCaptions2,
+#carouselExampleCaptions3,
+#carouselExampleCaptions4,
+#carouselExampleCaptions5 {
     margin-bottom: 26px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* h1{
-    font-size: 2.6rem;
-    line-height: 4rem;
-    font-weight: 800;
+body,
+html {
+    height: 100%;
+    margin: 0;
 }
+
+
+/* ส่วนของกรอบ */
+
+.rcorners {
+    margin: 20px;
+    /* เว้นช่องว่างระหว่างช่องคำถาม */
+    border-radius: 50px;
+    background: #017c74ef;
+    /* ทำให้สีโปร่งใสใช้สี rgba เช่น background: rgba(204, 204, 204, 0.5); */
+    padding: 50px;
+    width: 700px;
+    height: 90px;
+}
+
+.r2corners {
+    margin: 20px;
+    /* เว้นช่องว่างระหว่างช่องคำถาม */
+    border-radius: 50px;
+    background: #017c74ef;
+    /* ทำให้สีโปร่งใสใช้สี rgba เช่น background: rgba(204, 204, 204, 0.5); */
+    padding: 50px;
+    width: 700px;
+    height: 120px;
+}
+
+.r3corners {
+    margin: 20px;
+    /* เว้นช่องว่างระหว่างช่องคำถาม */
+    border-radius: 50px;
+    background: #017c74ef;
+    /* ทำให้สีโปร่งใสใช้สี rgba เช่น background: rgba(204, 204, 204, 0.5); */
+    padding: 50px;
+    width: 700px;
+    height: 400px;
+}
+
+.bg {
+    /* ทำให้ภาพ background เต็มจอได้ขณะเปิด Django(ตอน Run Server) /
+    background-image: url("/static/img/1563328623_PbMAjX1.gif"); / ต้องเรียกใช้ {% load static %} ต้องสร้างไฟล์ static กับ img เก็บรูปภาพ 
+    ส่วนของ settings.py ต้องเพิ่ม STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'static'),) */
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div.scorl {
+    margin: auto;
+    height: 80%;
+    width: 60%;
+    overflow: auto;
+    /* เป็นส่วนทำให้มี scorllbar */
+}
+
+h1 {
+    /* ปรับตัวหนังสือ */
+    text-align: center;
+    color: #fff;
+    font-family: 'Kanit', sans-serif;
+}
+
+
+/*------ส่วนของปุ่มตัวเลือก (Radio Buttons)---------*/
+
+
+/* The container */
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Kanit', sans-serif;
+    /*text-align: center;*/
+}
+
+
+/* Hide the browser's default radio button */
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+/* Create a custom radio button */
+
+.checkmark {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+<<<<<<< HEAD
 .btn-white{
     border: 2px solid #faeaea;
     border-radius: 2rem;
@@ -79,3 +178,93 @@ body{
 .btn-alpha{
     background: rgba(0, 0, 0, 0.5);
 } */
+=======
+
+
+/* On mouse-over, add a grey background color */
+
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+
+/* When the radio button is checked, add a blue background */
+
+.container input:checked~.checkmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2196F3;
+}
+
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the indicator (dot/circle) when checked */
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the indicator (dot/circle) */
+
+.container .checkmark:after {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: white;
+}
+
+
+/*----------------------------------------------*/
+
+
+/*--------ส่วนของปุ่ม Submit-----------------------*/
+
+.button {
+    border: none;
+    color: #ffffff00;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-family: 'Kanit', sans-serif;
+}
+
+.button1 {
+    background-color: #bbe65875;
+    color: rgb(255, 255, 255);
+    border: 2px solid #3f833f;
+}
+
+.button1:hover {
+    background-color: #77ce7a;
+    color: rgb(0, 0, 0);
+}
+
+.button2 {
+    background-color: #e9767675;
+    color: rgb(255, 255, 255);
+    border: 2px solid #881212;
+}
+
+.button2:hover {
+    background-color: #bb4646;
+    color: rgb(0, 0, 0);
+}
+
+
+/*----------------------------------------------*/
+>>>>>>> 20c00eeb60f6c45ad006d3a75bffd1fcecaff7c4

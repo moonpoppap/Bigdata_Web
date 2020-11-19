@@ -2,6 +2,7 @@ from django.shortcuts import render
 import pandas as pd
 from pythainlp.tokenize import word_tokenize
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import GradientBoostingClassifier
 from django.shortcuts import render
 import pandas as pd
 import numpy
@@ -939,25 +940,195 @@ def CommentPredict(request):
     elif(trip=="DreamWorld"):
         return render(request,'ดรีมเวิลด์.html',{'ans':ans,'comment':comment, 'feel':pred})
     elif(trip=="SafariWorld"):
-        return render(request,'Safari World.html',{'ans':ans,'comment':coment, 'fmeel':pred})
+        return render(request,'Safari World.html',{'ans':ans,'comment':comment, 'feel':pred})
 
-def ans01(request):
-    return render(request,'ans01.html')
+#ทำนายประเภทแหล่งท่องเที่ยว
+def TripPredict(request):
 
-def ans02(request):
-    return render(request,'ans02.html')
+    gender = request.POST['gender']
+    age = request.POST['age']
+    central = request.POST['central']
+    plan = request.POST['plan']
+    people = request.POST['people']
+    travel = request.POST['travel']
+    day = request.POST['day']
+    cost = request.POST['cost']
+    time = request.POST['time']
+    busy = request.POST['busy']
+    strain = request.POST['strain']
+    photo = request.POST['photo']
+    region = request.POST['region']
+    help = request.POST['help']
+    stay = request.POST['stay']
+    like = request.POST['like']
+    get = request.POST['get']
 
-def ans03(request):
-    return render(request,'ans03.html')
+    Test= numpy.zeros((1,30))
 
-def ans04(request):
-    return render(request,'ans04.html')
+    #เงื่อนไข gender
+    if(gender=="female"):
+        Test[0][0]=1
+    elif(gender=="male"):
+        Test[0][1]=1
 
-def ans05(request):
-    return render(request,'ans05.html')
+    #เงื่อนไข age
+    if(age=="young"):
+        Test[0][2]=1
+    elif(age=="half"):
+        Test[0][2]=2
+    else:
+        Test[0][2]=3
 
+    #เงื่อนไข central
+    if(central=="yes"):
+        Test[0][3]=1
 
+    #เงื่อนไข plan
+    if(plan=="1"):
+        Test[0][4]=1
+    elif(plan=="2"):
+        Test[0][4]=2
+    elif(plan=="3"):
+        Test[0][4]=3
+    elif(plan=="4"):
+        Test[0][4]=4
+    else:
+        Test[0][4]=5
 
+    #เงื่อนไข people
+    if(people=="friends"):
+        Test[0][5]=1
+    elif(people=="alone"):
+        Test[0][6]=1
+    
+    #เงื่อนไข travel
+    if(travel=="private"):
+        Test[0][7]=1
+    elif(travel=="train"):
+        Test[0][8]=1
+    
+    #เงื่อนไข day
+    if(day=="1"):
+        Test[0][9]=1
+    elif(day=="2"):
+        Test[0][9]=2
+    else:
+        Test[0][9]=3
 
+    #เงื่อนไข cost
+    if(cost=="1k"):
+        Test[0][10]=1
+    elif(cost=="3k"):
+        Test[0][10]=2
+    elif(cost=="5k"):
+        Test[0][10]=3
+    else:
+        Test[0][10]=4
+    
+     #เงื่อนไข time
+    if(time=="everytime"):
+        Test[0][11]=1
+    elif(time=="termend"):
+        Test[0][12]=1
+    elif(time=="holiday"):
+        Test[0][13]=1
+    
+    #เงื่อนไข busy
+    if(busy=="1"):
+        Test[0][14]=1
+    elif(busy=="2"):
+        Test[0][14]=2
+    elif(busy=="3"):
+        Test[0][14]=3
+    elif(busy=="4"):
+        Test[0][14]=4
+    else:
+        Test[0][14]=5
 
+    #เงื่อนไข strain
+    if(strain=="1"):
+        Test[0][15]=1
+    elif(strain=="2"):
+        Test[0][15]=2
+    elif(strain=="3"):
+        Test[0][15]=3
+    elif(strain=="4"):
+        Test[0][15]=4
+    else:
+        Test[0][15]=5
+    
+    #เงื่อนไข photo
+    if(photo=="1"):
+        Test[0][16]=1
+    elif(photo=="2"):
+        Test[0][16]=2
+    elif(photo=="3"):
+        Test[0][16]=3
+    elif(photo=="4"):
+        Test[0][16]=4
+    else:
+        Test[0][16]=5
+    
+    #เงื่อนไข region
+    if(region=="in"):
+        Test[0][17]=0
+    
+    #เงื่อนไข help
+    if(help=="2"):
+        Test[0][18]=2
+    elif(help=="3"):
+        Test[0][18]=3
+    elif(help=="4"):
+        Test[0][18]=4
+    else:
+        Test[0][18]=5
 
+    #เงื่อนไข stay
+    if(stay=="resort"):
+        Test[0][19]=1
+    elif(stay=="hotel"):
+        Test[0][20]=1
+    elif(stay=="homestay"):
+        Test[0][21]=1
+    elif(stay=="dailyroom"):
+        Test[0][22]=1
+
+    #เงื่อนไข like
+    if(like=="n"):
+        Test[0][23]=1
+    elif(like=="c"):
+        Test[0][24]=1
+    elif(like=="e"):
+        Test[0][25]=1
+    elif(like=="s"):
+        Test[0][26]=1
+    
+    #เงื่อนไข get
+    if(get=="newexp"):
+        Test[0][27]=1
+    elif(get=="rest"):
+        Test[0][28]=1
+    elif(get=="relationship"):
+        Test[0][29]=1
+
+    df=pd.read_csv("data/TrainData/Train2.csv")
+
+    x=df.drop("TouristAttraction",axis=1).values
+
+    y=df['TouristAttraction'].values
+
+    gbc = GradientBoostingClassifier()
+    gbc.fit(x,y) 
+
+    pred=gbc.predict(Test)
+
+    if(pred=="farm"):
+        return render(request,'ans01.html')
+    elif(pred=="sea"):
+        return render(request,'ans02.html')
+    elif(pred=="nature"):
+        return render(request,'ans03.html')
+    elif(pred=="recreation"):
+        return render(request,'ans04.html')
+    else:
+        return render(request,'ans05.html')

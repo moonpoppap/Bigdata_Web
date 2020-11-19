@@ -36,8 +36,14 @@ body {
 <link rel="stylesheet" href="../static/stylepic.css">
 </head>
 
+<<<<<<< HEAD
 <body style="background-color:powderblue;">
  <a href="https://th.wikipedia.org/wiki/%E0%B8%AB%E0%B8%B2%E0%B8%94%E0%B8%8A%E0%B8%B0%E0%B8%AD%E0%B8%B3" target="_blank" rel="noopener noreferrer"><img src="../static/img/ทะเล/10.หาดชำอำ-Simple(540).jpg" alt="Avatar" width="1920" height="400"></a>
+=======
+<body>
+<div class = "bg">
+  <a href="https://th.wikipedia.org/wiki/%E0%B8%AB%E0%B8%B2%E0%B8%94%E0%B8%8A%E0%B8%B0%E0%B8%AD%E0%B8%B3" target="_blank" rel="noopener noreferrer"><img src="../static/img/ทะเล/10.หาดชำอำ-Simple(540).jpg" alt="Avatar" width="1920" height="400"></a>
+>>>>>>> 20c00eeb60f6c45ad006d3a75bffd1fcecaff7c4
   <div class="topright">
   <!--การใช้ if else ด้วย Django-->
     {% if ans == 'positive' %}
@@ -58,8 +64,13 @@ body {
 
   <form action="Comment" method="POST">
     {% csrf_token %}
+<<<<<<< HEAD
  <label for="comment"></label>
     <input type="text" name="comm" id="box" placeholder="แสดงความคิดเห็น"> 
+=======
+  <label for="comment"></label>
+    <input type="text" name="comm" id="box" placeholder="แสดงความคิดเห็น">
+>>>>>>> 20c00eeb60f6c45ad006d3a75bffd1fcecaff7c4
   
     <button type="submit" name="comment" value="ChaAm" class="btn">Comment</button>
   </div>
