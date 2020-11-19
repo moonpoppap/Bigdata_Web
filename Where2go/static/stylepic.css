@@ -103,3 +103,9 @@ div.scorl {
     overflow: auto;
     /* เป็นส่วนทำให้มี scorllbar */
 }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

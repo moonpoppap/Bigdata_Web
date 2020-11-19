@@ -11,9 +11,12 @@ body {
     background-image: linear-gradient(to right, rgba(7, 46, 26, 0.52), rgba(7, 46, 26, 0.52)), url(img/วิว.jpg);
     /* opacity: 0.8; */
     color: aliceblue;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
 }
 
 .center {
@@ -116,10 +119,9 @@ html {
 }
 
 .bg {
-    /* ทำให้ภาพ background เต็มจอได้ขณะเปิด Django(ตอน Run Server) */
-    background-image: linear-gradient(to right, rgba(7, 46, 26, 0.52), rgba(7, 46, 26, 0.52)), url(img/วิว.jpg);
-    /* ต้องเรียกใช้ {% load static %} ต้องสร้างไฟล์ static กับ img เก็บรูปภาพ 
-        ส่วนของ settings.py ต้องเพิ่ม STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'static'),) */
+    /* ทำให้ภาพ background เต็มจอได้ขณะเปิด Django(ตอน Run Server) /
+    background-image: url("/static/img/1563328623_PbMAjX1.gif"); / ต้องเรียกใช้ {% load static %} ต้องสร้างไฟล์ static กับ img เก็บรูปภาพ 
+    ส่วนของ settings.py ต้องเพิ่ม STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'static'),) */
     height: 100%;
     width: 100%;
     position: fixed;
