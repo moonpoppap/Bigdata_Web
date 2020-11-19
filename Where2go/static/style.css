@@ -13,7 +13,10 @@ body{
     color: aliceblue;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
+    background-position: center;
+    position: fixed;
+    height: 100%;
+    width: 100%;
 }
 
 .center{
