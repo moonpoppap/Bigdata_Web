@@ -939,7 +939,23 @@ def CommentPredict(request):
     elif(trip=="DreamWorld"):
         return render(request,'ดรีมเวิลด์.html',{'ans':ans,'comment':comment, 'feel':pred})
     elif(trip=="SafariWorld"):
-        return render(request,'Safari World.html',{'ans':ans,'comment':comment, 'feel':pred})
+        return render(request,'Safari World.html',{'ans':ans,'comment':coment, 'fmeel':pred})
+
+def ans01(request):
+    return render(request,'ans01.html')
+
+def ans02(request):
+    return render(request,'ans02.html')
+
+def ans03(request):
+    return render(request,'ans03.html')
+
+def ans04(request):
+    return render(request,'ans04.html')
+
+def ans05(request):
+    return render(request,'ans05.html')
+
 
 
 

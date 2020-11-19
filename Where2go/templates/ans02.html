@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/stylepic.css">
+  <title>Where2go</title>
+  <style>
+    img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center123 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top : 10%;
+  width: 50%;
+}
+  </style>
+</head>
+
+<body>
+
+<form action="Home" method="POST">
+
+<div class = "bg">
+<img src="../static/img/ปกทะเล.jpg" width="1680" height="400" class = "center123">
+
+<div class="home">
+    
+      {% csrf_token %}
+      <input type="image" alt="Search" src="../static/img/homebtn.png" alt="Cinque Terre" width="50" height="50">
+  </div>
+</div>
+</div>
+</form>
+
+
+
+
+
+  <script src="/static/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/static/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/static/node_modules/popper.js/dist/umd/popper.min.js"></script>
+</body>
+
+</html>
